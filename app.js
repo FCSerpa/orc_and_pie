@@ -36,24 +36,6 @@ function btnPress1(){
 			charm();
 		} else if (character.characterClass === "rog") {
 			steal();
-			// if (steal()){
-			// 	$('#pTxt').text('You successfully sneak up behind the orc and steal the pie out from under his nose!  I hope you like ' + flavor() + '.');
-			// 	$('div#btnDiv').empty();
-			// } else {
-			// 	$('#pTxt').text('You fail to sneak up on the orc.  It looks really mad.  It swings a greataxe at your face.');
-			// 	if (attackPC()){
-			// 		$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
-			// 	} else {
-			// 		$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and misses you.');
-			// 	}
-			// 	if (isDead()){
-			// 		$('#pTxt').append('<br>You have perished.  The orc enjoys its pie over your mutilated corpse.');
-			// 		$('div#btnDiv').empty();
-			// 	} else {
-			// 		$('div#btnDiv').empty();
-			// 		$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button id="run"><button>Run away!</button>');
-			// 	}
-			// }
 		} else {
 			characterWeaponAttack();
 		}
@@ -148,7 +130,7 @@ function charm(){
 
 function steal(){
 	if((d(20) + 5 >= 10) && (d(20) + 5 >= 15)){
-		$('#pTxt').text('You successfully sneak up behind the orc and steal the pie out from under his nose!  I hope you like ' + flavor() + '.');
+		$('#pTxt').html('You successfully sneak up behind the orc and steal the pie out from under his nose!  I hope you like ' + flavor() + '.<br>You are a <strong>Rogue</strong>! You\'re all sneaky and stuff.');
 		$('div#btnDiv').empty();
 		//return true;
 	} else {
