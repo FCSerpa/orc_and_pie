@@ -152,9 +152,44 @@ function backStab(){
 				$('div#btnDiv').append('<button id="attack">Stab at the orc again!</button><button id="run">Run away!</button>');
 			}
 		}
+		$("#attack").click(function(){
+			characterWeaponAttack();
+		});
+		$("#run").click(function(){
+			runAway();
+		});
 	} else {
 		$('#pTxt').html('You fail at sneaking up on the orc, but since you\'re already right behind it, you try to stab it anyway. <br>');
-		(characterWeaponAttack())
+		if (toHitOrc()) {
+		orcHP -= weaponDamage();
+		$('#pTxt').append('You roll a ' + roll1 + ' and hit the orc for ' + damage + ' damage. ');
+	} else {
+		$('#pTxt').append('You roll a ' + roll1 + ' and miss the orc. ');
+	}
+	if (orcHP <= 0){
+		$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>' + youAre());
+		$('div#btnDiv').empty();
+	} else {
+		$('#pTxt').append('The orc is still alive. It looks really mad.  It swings a greataxe at your face.');
+		if (attackPC()){
+			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
+		} else {
+			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and misses you.');
+		}
+		if (isDead()){
+			$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
+			$('div#btnDiv').empty();
+		} else {
+			$('div#btnDiv').empty();
+			$('div#btnDiv').append('<button id="attack">Attack the orc again!</button><button id="run">Run away!</button>');
+			$("#attack").click(function(){
+				characterWeaponAttack();
+			});
+			$("#run").click(function(){
+				runAway();
+			});
+		}
+	}
 	}
 };
 
@@ -347,6 +382,7 @@ function runAway(){
 			$('div#btnDiv').empty();
 		} else {
 			$('#pTxt').append('<br>You flee the dungeon.  You survive but you have no pie.  Until your last days, you will always wonder how good that pie would have tasted.');
+			$('div#btnDiv').empty();
 		}
 };
 
