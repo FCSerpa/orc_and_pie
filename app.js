@@ -129,6 +129,7 @@ function backStab(){
 		$('#pTxt').html('You succeed at sneaking up on the orc, ');
 		if (toHitOrcAdv()){
 			damage = weaponDamage() + d(6);
+			crit();
 			orcHP -= damage;
 			$('#pTxt').append('and you roll a ' + roll1 + ' and hit the orc for ' + damage + ' damage. ');
 		} else {
@@ -161,41 +162,45 @@ function backStab(){
 	} else {
 		$('#pTxt').html('You fail at sneaking up on the orc, but since you\'re already right behind it, you try to stab it anyway. <br>');
 		if (toHitOrc()) {
-		orcHP -= weaponDamage();
-		$('#pTxt').append('You roll a ' + roll1 + ' and hit the orc for ' + damage + ' damage. ');
-	} else {
-		$('#pTxt').append('You roll a ' + roll1 + ' and miss the orc. ');
-	}
-	if (orcHP <= 0){
-		$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>' + youAre());
-		$('div#btnDiv').empty();
-	} else {
-		$('#pTxt').append('The orc is still alive. It looks really mad.  It swings a greataxe at your face.');
-		if (attackPC()){
-			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
+			damage = weaponDamage();
+			crit();
+			orcHP -= damage();
+			$('#pTxt').append('You roll a ' + roll1 + ' and hit the orc for ' + damage + ' damage. ');
 		} else {
-			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and misses you.');
+			$('#pTxt').append('You roll a ' + roll1 + ' and miss the orc. ');
 		}
-		if (isDead()){
-			$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
+		if (orcHP <= 0){
+			$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>' + youAre());
 			$('div#btnDiv').empty();
 		} else {
-			$('div#btnDiv').empty();
-			$('div#btnDiv').append('<button id="attack">Attack the orc again!</button><button id="run">Run away!</button>');
-			$("#attack").click(function(){
-				characterWeaponAttack();
-			});
-			$("#run").click(function(){
-				runAway();
-			});
+			$('#pTxt').append('The orc is still alive. It looks really mad.  It swings a greataxe at your face.');
+			if (attackPC()){
+				$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
+			} else {
+				$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and misses you.');
+			}
+			if (isDead()){
+				$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
+				$('div#btnDiv').empty();
+			} else {
+				$('div#btnDiv').empty();
+				$('div#btnDiv').append('<button id="attack">Attack the orc again!</button><button id="run">Run away!</button>');
+				$("#attack").click(function(){
+					characterWeaponAttack();
+				});
+				$("#run").click(function(){
+					runAway();
+				});
+			}
 		}
-	}
 	}
 };
 
 function characterWeaponAttack(){
 	if (toHitOrc()) {
-		orcHP -= weaponDamage();
+		damage = weaponDamage();
+		crit();
+		orcHP -= damage;
 		$('#pTxt').html('You roll a ' + roll1 + ' and hit the orc for ' + damage + ' damage. ');
 	} else {
 		$('#pTxt').html('You roll a ' + roll1 + ' and miss the orc. ');
@@ -315,10 +320,18 @@ function steal(){
 function attackPC(){
 	if (toHitPC()){
 		damage = d(12) + 3;
+		crit();
 		character.hp -= damage;
 		return true;
 	} else {
 		return false;
+	}
+}
+
+function crit(){
+	if (roll1 === 20){
+		roll1 = '20 (a critical hit!)';
+		damage = damage * 2;
 	}
 }
 
