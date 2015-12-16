@@ -321,7 +321,7 @@ function youAre(){
 	if (character.characterClass === 'ass') {
 		return 'You are an <strong>Assassin</strong>! You defeat your enemies with stealth and treachery.';
 	} else if (character.characterClass === 'rog') {
-		return 'You are a <strong>Rogue</strong>! You\'re all sneaky and stuff.';
+		return 'You are a <strong>Rogue</strong>! You accomplish your goals with stealth and guile.';
 	} else if (character.characterClass === 'wiz') {
 		return 'You are a <strong>Wizard</strong>! You are a master of the arcane arts.';
 	} else if (character.characterClass === 'brd') {
@@ -329,14 +329,25 @@ function youAre(){
 	} else if (character.characterClass === 'brb') {
 		return 'You are a <strong>Barbarian</strong>! You defeat your foes with primal fury.';
 	} else if (character.characterClass === 'ftr') {
-		return 'You are a <strong>Bard</strong>! You defeat your foes with your strength and tactics.';
+		return 'You are a <strong>Fighter</strong>! You defeat your foes with your strength and tactics.';
 	} else if (character.characterClass === 'rng') {
-		return 'You are a <strong>Bard</strong>! You defeat your favored enemies with cunning and skill.';
+		return 'You are a <strong>Ranger</strong>! You defeat your favored enemies with cunning and skill.';
 	}
 };
 
 function runAway(){
-
+	$('#pTxt').html('The orc attacks you one last time as you turn to run.');
+	if (attackPC()){
+			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
+		} else {
+			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and misses you.');
+		}
+		if (isDead()){
+			$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
+			$('div#btnDiv').empty();
+		} else {
+			$('#pTxt').append('<br>You flee the dungeon.  You survive but you have no pie.  Until your last days, you will always wonder how good that pie would have tasted.');
+		}
 };
 
 function reset(){
