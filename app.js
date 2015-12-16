@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 initialize();
 
-})
+});
 
 function PC(characterClass) {
 	this.characterClass = characterClass;
@@ -21,6 +21,15 @@ var pie;
 
 function initialize(){
 	btnPress1();
+	$("#attack").click(function(){
+		characterWeaponAttack();
+	});
+	$("#run").click(function(){
+		runAway();
+	});
+	$("#reset").click(function(){
+		reset();
+	});
 }
 
 function btnPress1(){
@@ -148,7 +157,7 @@ function backStab(){
 				$('div#btnDiv').empty();
 			} else {
 				$('div#btnDiv').empty();
-				$('div#btnDiv').append('<button id="attack">Stab at the orc again!</button id="run"><button>Run away!</button>');
+				$('div#btnDiv').append('<button id="attack">Stab at the orc again!</button><button id="run">Run away!</button>');
 			}
 		}
 	} else {
@@ -179,7 +188,7 @@ function characterWeaponAttack(){
 			$('div#btnDiv').empty();
 		} else {
 			$('div#btnDiv').empty();
-			$('div#btnDiv').append('<button id="attack">Attack the orc again!</button id="run"><button>Run away!</button>');
+			$('div#btnDiv').append('<button id="attack">Attack the orc again!</button><button id="run">Run away!</button>');
 		}
 	}
 };
@@ -224,7 +233,7 @@ function charm(){
 			$('div#btnDiv').empty();
 		} else {
 			$('div#btnDiv').empty();
-			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button id="run"><button>Run away!</button>');
+			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button><button id="run">Run away!</button>');
 		}
 	}
 };
@@ -246,7 +255,7 @@ function steal(){
 			$('div#btnDiv').empty();
 		} else {
 			$('div#btnDiv').empty();
-			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button id="run"><button>Run away!</button>');
+			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button><button id="run">Run away!</button>');
 		}
 		//return false;
 	}
@@ -290,7 +299,7 @@ function isDead(){
 	} else {
 		return false;
 	}
-}
+};
 
 function youAre(){
 	if (character.characterClass === 'ass') {
@@ -308,7 +317,19 @@ function youAre(){
 	} else if (character.characterClass === 'rng') {
 		return 'You are a <strong>Bard</strong>! You defeat your favored enemies with cunning and skill.';
 	}
-}
+};
+
+function runAway(){
+
+};
+
+function reset(){
+	orcHP = 15;
+	$('#pTxt').html('You enter a room.  In the center of the room is a table with a delicious looking pie on it.  An orc looks like he\'s about to eat the pie.  What do you do?');
+	$('div#btnDiv').empty();
+	$('div#btnDiv').append('<button id="brb" class="firstBtn">Charge the orc, swinging a huge axe at its head.</button><button id="ftr" class="firstBtn">Approach the orc cautiously with sword and shield.</button><button id="rng" class="firstBtn">Shoot the orc with a bow from where you are.</button><button id="wiz" class="firstBtn">Cast a spell throwing magical bolts of energy at the orc.</button><button id="ass" class="firstBtn">Sneak up on the orc, and stab it in the back.</button><button id="rog" class="firstBtn">Sneak up on the orc, and try to steal the pie.</button><button id="brd" class="firstBtn">Kindly ask the orc if it would like to share its pie.</button>');
+	btnPress1();
+};
 
 /* some useful strings
 'You roll a num and hit the orc for num damage.'
