@@ -1,7 +1,8 @@
 $(document).ready(function(){
-
-initialize();
-
+	initialize();
+	$("#reset").click(function(){
+		reset();
+	});
 });
 
 function PC(characterClass) {
@@ -21,15 +22,6 @@ var pie;
 
 function initialize(){
 	btnPress1();
-	$("#attack").click(function(){
-		characterWeaponAttack();
-	});
-	$("#run").click(function(){
-		runAway();
-	});
-	$("#reset").click(function(){
-		reset();
-	});
 }
 
 function btnPress1(){
@@ -171,7 +163,7 @@ function characterWeaponAttack(){
 		orcHP -= weaponDamage();
 		$('#pTxt').html('You roll a ' + roll1 + ' and hit the orc for ' + damage + ' damage. ');
 	} else {
-		$('#pTxt').append('You roll a ' + roll1 + ' and miss the orc. ');
+		$('#pTxt').html('You roll a ' + roll1 + ' and miss the orc. ');
 	}
 	if (orcHP <= 0){
 		$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>' + youAre());
@@ -189,6 +181,12 @@ function characterWeaponAttack(){
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Attack the orc again!</button><button id="run">Run away!</button>');
+			$("#attack").click(function(){
+				characterWeaponAttack();
+			});
+			$("#run").click(function(){
+				runAway();
+			});
 		}
 	}
 };
@@ -213,13 +211,19 @@ function magicMissile(){
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Try to electrocute the orc with a shocking grasp spell.</button id="run"><button>Run away!</button>');
+			$("#attack").click(function(){
+				characterWeaponAttack();
+			});
+			$("#run").click(function(){
+				runAway();
+			});
 		}
 	}
 };
 
 function charm(){
 	if(d(20) + 5 >= 20){
-		$('#pTxt').html('Your kind words somehow charm the orc. Now you will both have pie!  I hope you like ' + flavor() + '.<br>' + youAre());
+		$('#pTxt').html('Your kind words somehow charm the orc. Now you both have pie!  I hope you like ' + flavor() + '.<br>' + youAre());
 		$('div#btnDiv').empty();
 	} else {
 		$('#pTxt').text('You fail to sweet talk the orc.  First it looks comfused, then it looks really mad, then it swings a greataxe at your face.');
@@ -234,6 +238,12 @@ function charm(){
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button><button id="run">Run away!</button>');
+			$("#attack").click(function(){
+				characterWeaponAttack();
+			});
+			$("#run").click(function(){
+				runAway();
+			});
 		}
 	}
 };
@@ -256,6 +266,12 @@ function steal(){
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button><button id="run">Run away!</button>');
+			$("#attack").click(function(){
+				characterWeaponAttack();
+			});
+			$("#run").click(function(){
+				runAway();
+			});
 		}
 		//return false;
 	}
