@@ -4,12 +4,30 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  color: lemonchiffon;
+  font-family: 'Metal Mania', cursive;
+  text-align: center;
 }
 
 button {
-	display: block;
+	/*display: block;*/
+	background: lemonchiffon;
+	font-family: 'Metal Mania', cursive;
+	font-size: inherit;
 }
 
-h1 {
+.orc {
+	font-family: 'Eater', cursive;
+}
 
+#container {
+	max-width: 60%;
+	margin-left: 20%;
+}
+img {
+	width: 60%;
+}
+
+h1, h2, p {
+	background-color: rgba(21, 27, 31, 0.6);
 }

@@ -137,9 +137,11 @@ function backStab(){
 		}
 		if (orcHP <= 0){
 			$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>' + youAre());
+			$('#picDiv').html('<img src="images/' + pie + '.jpg"></img>');
 			$('div#btnDiv').empty();
 		} else {
 			$('#pTxt').append('The orc is still alive. It looks really mad.  It swings a greataxe at your face.');
+			$('#picDiv').html('<img src="images/orc_more.jpg"></img>');
 			if (attackPC()){
 				$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
 			} else {
@@ -148,6 +150,7 @@ function backStab(){
 			if (isDead()){
 				$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
 				$('div#btnDiv').empty();
+				$('#picDiv').html('<img src="images/dead.jpg"></img>');
 			} else {
 				$('div#btnDiv').empty();
 				$('div#btnDiv').append('<button id="attack">Stab at the orc again!</button><button id="run">Run away!</button>');
@@ -171,9 +174,11 @@ function backStab(){
 		}
 		if (orcHP <= 0){
 			$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>' + youAre());
+			$('#picDiv').html('<img src="images/' + pie + '.jpg"></img>');
 			$('div#btnDiv').empty();
 		} else {
 			$('#pTxt').append('The orc is still alive. It looks really mad.  It swings a greataxe at your face.');
+			$('#picDiv').html('<img src="images/orc_more.jpg"></img>');
 			if (attackPC()){
 				$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
 			} else {
@@ -182,6 +187,7 @@ function backStab(){
 			if (isDead()){
 				$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
 				$('div#btnDiv').empty();
+				$('#picDiv').html('<img src="images/dead.jpg"></img>');
 			} else {
 				$('div#btnDiv').empty();
 				$('div#btnDiv').append('<button id="attack">Attack the orc again!</button><button id="run">Run away!</button>');
@@ -207,9 +213,11 @@ function characterWeaponAttack(){
 	}
 	if (orcHP <= 0){
 		$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>' + youAre());
+		$('#picDiv').html('<img src="images/' + pie + '.jpg"></img>');
 		$('div#btnDiv').empty();
 	} else {
 		$('#pTxt').append('The orc is still alive. It looks really mad.  It swings a greataxe at your face.');
+		$('#picDiv').html('<img src="images/orc_more.jpg"></img>');
 		if (attackPC()){
 			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
 		} else {
@@ -218,6 +226,7 @@ function characterWeaponAttack(){
 		if (isDead()){
 			$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
 			$('div#btnDiv').empty();
+			$('#picDiv').html('<img src="images/dead.jpg"></img>');
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Attack the orc again!</button><button id="run">Run away!</button>');
@@ -237,9 +246,11 @@ function magicMissile(){
 	$('#pTxt').html('Three magic missiles fly at the orc and hit the it for ' + damage + ' damage. ');
 	if (orcHP <= 0){
 		$('#pTxt').append('You have defeated the orc.  You can now help yourself to the pie.  I hope you like ' + flavor() + '.<br>');
+		$('#picDiv').html('<img src="images/' + pie + '.jpg"></img>');
 		$('div#btnDiv').empty();
 	} else {
 		$('#pTxt').append('The orc is injured, but alive. It looks really mad.  It swings a greataxe at your face.');
+		$('#picDiv').html('<img src="images/orc_more.jpg"></img>');
 		if (attackPC()){
 			$('#pTxt').append('<br>The orc rolls a ' + roll1 + ' and hits you for ' + damage + ' damage! You have ' + character.hp + ' hit points left.');
 		} else {
@@ -248,6 +259,7 @@ function magicMissile(){
 		if (isDead()){
 			$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
 			$('div#btnDiv').empty();
+			$('#picDiv').html('<img src="images/dead.jpg"></img>');
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Try to electrocute the orc with a shocking grasp spell.</button id="run"><button>Run away!</button>');
@@ -264,6 +276,7 @@ function magicMissile(){
 function charm(){
 	if(d(20) + 5 >= 20){
 		$('#pTxt').html('Your kind words somehow charm the orc. Now you both have pie!  I hope you like ' + flavor() + '.<br>' + youAre());
+		$('#picDiv').html('<img src="images/' + pie + '.jpg"></img>');
 		$('div#btnDiv').empty();
 	} else {
 		$('#pTxt').text('You fail to sweet talk the orc.  First it looks comfused, then it looks really mad, then it swings a greataxe at your face.');
@@ -275,6 +288,7 @@ function charm(){
 		if (isDead()){
 			$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
 			$('div#btnDiv').empty();
+			$('#picDiv').html('<img src="images/dead.jpg"></img>');
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button><button id="run">Run away!</button>');
@@ -291,6 +305,7 @@ function charm(){
 function steal(){
 	if((d(20) + 5 >= 10) && (d(20) + 5 >= 15)){
 		$('#pTxt').html('You successfully sneak up behind the orc and steal the pie out from under his nose!  I hope you like ' + flavor() + '.<br>' + youAre());
+		$('#picDiv').html('<img src="images/' + pie + '.jpg"></img>');
 		$('div#btnDiv').empty();
 		//return true;
 	} else {
@@ -303,6 +318,7 @@ function steal(){
 		if (isDead()){
 			$('#pTxt').append('<br>You have perished.  The orc enjoys its ' + flavor() + ' pie over your mutilated corpse.');
 			$('div#btnDiv').empty();
+			$('#picDiv').html('<img src="images/dead.jpg"></img>');
 		} else {
 			$('div#btnDiv').empty();
 			$('div#btnDiv').append('<button id="attack">Draw a sword and stab the orc.</button><button id="run">Run away!</button>');
@@ -338,7 +354,8 @@ function crit(){
 function flavor(){
 	var pieRoll = d(6);
 	if (pieRoll === 1){
-		return 'pumpkin';
+		pie = 'pumpkin';
+		return pie;
 	} else if (pieRoll === 2){
 		pie = 'apple';
 		return pie;
@@ -346,10 +363,10 @@ function flavor(){
 		pie = 'blueberry';
 		return pie;
 	} else if (pieRoll === 4){
-		pie = 'lemon meringue';
+		pie = 'lemon-meringue';
 		return pie;
 	} else if (pieRoll === 5){
-		pie = 'banana cream';
+		pie = 'banana-cream';
 		return pie;
 	} else if (pieRoll === 6){
 		pie = 'cherry';
@@ -403,7 +420,8 @@ function reset(){
 	orcHP = 15;
 	$('#pTxt').html('You enter a room.  In the center of the room is a table with a delicious looking pie on it.  An orc looks like he\'s about to eat the pie.  What do you do?');
 	$('div#btnDiv').empty();
-	$('div#btnDiv').append('<button id="brb" class="firstBtn">Charge the orc, swinging a huge axe at its head.</button><button id="ftr" class="firstBtn">Approach the orc cautiously with sword and shield.</button><button id="rng" class="firstBtn">Shoot the orc with a bow from where you are.</button><button id="wiz" class="firstBtn">Cast a spell throwing magical bolts of energy at the orc.</button><button id="ass" class="firstBtn">Sneak up on the orc, and stab it in the back.</button><button id="rog" class="firstBtn">Sneak up on the orc, and try to steal the pie.</button><button id="brd" class="firstBtn">Kindly ask the orc if it would like to share its pie.</button>');
+	$('div#btnDiv').append('<button id="brb" class="firstBtn">Charge the orc, swinging a huge axe at its head.</button><button id="ftr" class="firstBtn">Approach the orc cautiously with sword and shield.</button><button id="rng" class="firstBtn">Shoot the orc with a bow from where you are.</button><button id="ass" class="firstBtn">Sneak up on the orc, and stab it in the back.</button><button id="rog" class="firstBtn">Sneak up on the orc, and try to steal the pie.</button><button id="brd" class="firstBtn">Kindly ask the orc if it would like to share its pie.</button><button id="wiz" class="firstBtn">Cast a spell throwing magical bolts of energy at the orc.</button>');
+	$('#picDiv').html('<img src="images/cook.jpg"></img>');
 	btnPress1();
 };
 
